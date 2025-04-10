@@ -25,7 +25,7 @@ const About = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-12 text-center">{t('about.title')} <span className="text-brand-pink">LUXE$</span></h1>
           
           <div className="flex flex-col md:flex-row gap-10">
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 mx-auto">
               <div className="bg-[#333333] p-6 md:p-8 rounded-lg">
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   {t('about.history.p1')}
