@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -34,12 +33,9 @@ const Login = () => {
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
     
-    // Simulate login delay
     setTimeout(() => {
       setIsLoading(false);
-      
-      // In a real app, you would validate credentials here
-      // For now, we'll just mock a successful login
+
       toast({
         title: t('login.messagetittle'),
         description: t('login.messagedescription'),

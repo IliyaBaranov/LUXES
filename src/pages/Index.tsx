@@ -23,7 +23,7 @@ const Index = () => {
         ></div>
         
         <Header />
-        
+
         <section className="h-screen flex items-center relative overflow-hidden">
           <div className="container mx-auto px-4 z-10">
             <div className="max-w-2xl">

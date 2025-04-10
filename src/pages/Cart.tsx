@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import { useLocale } from '../context/LocaleContext';
 import { useCart } from '../context/CartContext';
-import { Trash, Plus, Minus, X } from 'lucide-react'; // Added X icon
+import { Trash, Plus, Minus, X } from 'lucide-react';
 import CheckoutModal from "@/components/CheckoutModal";
 
 const Cart = () => {
