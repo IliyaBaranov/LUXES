@@ -5,7 +5,6 @@ import { useLocale } from '../context/LocaleContext';
 import LanguageSwitch from './LanguageSwitch';
 import { useCart } from '../context/CartContext';
 import { ShoppingCart } from 'lucide-react';
-
 interface HeaderProps {
   isLoginPage?: boolean;
 }

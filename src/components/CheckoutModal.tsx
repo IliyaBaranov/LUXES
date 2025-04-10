@@ -24,9 +24,9 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ open, onOpenChange }) => 
   const { clearCart } = useCart();
 
   const handleContinueShopping = () => {
-    clearCart(); // Clear the cart
+    clearCart();
     onOpenChange(false);
-    navigate('/catalog'); // Redirect to catalog
+    navigate('/catalog');
   };
 
   return (
