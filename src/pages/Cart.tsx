@@ -1,19 +1,28 @@
-
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import { useLocale } from '../context/LocaleContext';
 import { useCart } from '../context/CartContext';
-import { Trash, Plus, Minus } from 'lucide-react';
+import { Trash, Plus, Minus, X } from 'lucide-react'; // Added X icon
+import CheckoutModal from "@/components/CheckoutModal";
 
 const Cart = () => {
   const { t } = useLocale();
-  const { cartItems, removeFromCart, updateQuantity, calculateTotal } = useCart();
-  
+  const { cartItems, removeFromCart, updateQuantity, calculateTotal, clearCart } = useCart();
+  const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = 'LUXE$ | Cart';
   }, []);
+
+  const handleCheckout = () => {
+    setCheckoutModalOpen(true);
+  };
+
+  const handleClearCart = () => {
+    clearCart();
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#2C2C2C] font-['Rubik']">
@@ -40,6 +49,19 @@ const Cart = () => {
               </div>
             ) : (
               <div className="bg-[#333333] p-6 rounded-lg">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-xl font-medium">
+                    {t('cart.items')} {cartItems.length}
+                  </h2>
+                  <button
+                    onClick={handleClearCart}
+                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                  >
+                    <X size={18} />
+                    {t('cart.clear')}
+                  </button>
+                </div>
+                
                 <div className="space-y-6">
                   {cartItems.map(item => (
                     <div key={item.id} className="flex items-center space-x-4 border-b border-gray-700 pb-4">
@@ -89,15 +111,21 @@ const Cart = () => {
                   ))}
                 </div>
                 
-                <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-center">
-                  <div>
-                    <p className="text-lg">{t('cart.total')} <span className="font-bold text-brand-pink">${calculateTotal().toFixed(2)}</span></p>
+                <div className="mt-6 flex justify-between items-center">
+                  <div className="text-xl font-bold">
+                    {t('cart.total')} ${calculateTotal().toFixed(2)}
                   </div>
-                  
-                  <div className="mt-4 md:mt-0">
-                    <Button className="cursor-pointer">{t('cart.checkout')}</Button>
-                  </div>
+                  <Button 
+                    className="cursor-pointer bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition-colors"
+                    onClick={handleCheckout}
+                  >
+                    {t('cart.checkout')}
+                  </Button>
                 </div>
+                <CheckoutModal 
+                  open={checkoutModalOpen} 
+                  onOpenChange={setCheckoutModalOpen} 
+                />
               </div>
             )}
           </div>

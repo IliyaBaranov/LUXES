@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import { useLocale } from '../context/LocaleContext';
 
-// Sample product data
 const products = [
   { id: 1, name: 'T-Shirt Basic', price: 49.99, image: '/public/images/39e489ff-5f13-4dcd-ac3e-7bb0ebd0f256.png' },
   { id: 2, name: 'Hoodie Black', price: 89.99, image: '/public/images/39e489ff-5f13-4dcd-ac3e-7bb0ebd0f256.png' },

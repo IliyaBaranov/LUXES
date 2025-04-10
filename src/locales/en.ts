@@ -34,7 +34,14 @@ export const enTranslations: Record<string, string> = {
   
   // Catalog page
   'catalog.title': 'CATALOG',
-  
+  'catalog.notification.add.title': 'Added to cart',
+  'catalog.notification.add.description': ' has been added to your cart',
+  'catalog.notification.remove.title': 'Removed from cart',
+  'catalog.notification.remove.description': ' has been removed from your cart',
+  'catalog.notification.already.title': 'Product already in cart',
+  'catalog.notification.already.description1': 'Quantity of ',
+  'catalog.notification.already.description2': ' increased by 1',
+
   // Delivery page
   'delivery.title': 'DELIVERY',
   'delivery.pickup.title': 'Pickup',
@@ -60,7 +67,15 @@ export const enTranslations: Record<string, string> = {
   'cart.goto.catalog': 'GO TO CATALOG',
   'cart.total': 'Total:',
   'cart.checkout': 'CHECKOUT',
-  
+  'cart.notification.title': '"Order Confirmed',
+  'cart.notification.description': 'Thank you for your purchase. Your order has been successfully placed.',
+  'cart.notification.confirmation': 'Your order confirmation has been sent to your email.',
+  'cart.notification.continueButton': 'Continue Shopping',
+  'cart.notification.process': 'Our team will process your order shortly.',
+  'cart.items': 'Items in cart:',
+  'cart.clear': 'Clear the cart',
+
+
   // Footer
   'footer.copyright': '© 2025 LUXE$ BRAND 69 KRASNAYA STREET',
   

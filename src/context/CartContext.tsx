@@ -1,6 +1,6 @@
-
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { toast } from '@/components/ui/use-toast';
+import { useLocale } from '../context/LocaleContext';
 
 export interface CartItem {
   id: number;
@@ -16,12 +16,27 @@ interface CartContextType {
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
   calculateTotal: () => number;
+  clearCart: () => void;
 }
 
+const CART_STORAGE_KEY = 'cartItems';
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { t } = useLocale();
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    // Load cart from localStorage on initial render
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+      return savedCart ? JSON.parse(savedCart) : [];
+    }
+    return [];
+  });
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (product: Omit<CartItem, 'quantity'>) => {
     setCartItems(prevItems => {
@@ -29,8 +44,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       
       if (existingItem) {
         toast({
-          title: "Product already in cart",
-          description: `Quantity of ${product.name} increased by 1`,
+          title: t('catalog.notification.already.title'),
+          description: t('catalog.notification.already.description1') + product.name + t('catalog.notification.already.description2'),
         });
         
         return prevItems.map(item => 
@@ -40,8 +55,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         );
       } else {
         toast({
-          title: "Added to cart",
-          description: `${product.name} has been added to your cart`,
+          title: t('catalog.notification.add.title'),
+          description: product.name + t('catalog.notification.add.description'),
         });
         
         return [...prevItems, { ...product, quantity: 1 }];
@@ -55,8 +70,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       
       if (itemToRemove) {
         toast({
-          title: "Removed from cart",
-          description: `${itemToRemove.name} has been removed from your cart`,
+          title: t('catalog.notification.remove.title'),
+          description: itemToRemove.name + t('catalog.notification.remove.description'),
         });
       }
       
@@ -78,13 +93,18 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <CartContext.Provider value={{ 
       cartItems, 
       addToCart, 
       removeFromCart, 
       updateQuantity,
-      calculateTotal
+      calculateTotal,
+      clearCart
     }}>
       {children}
     </CartContext.Provider>

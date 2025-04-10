@@ -34,7 +34,14 @@ export const ruTranslations: Record<string, string> = {
   
   // Catalog page
   'catalog.title': 'КАТАЛОГ',
-  
+  'catalog.notification.add.title': 'Добавлено в корзину',
+  'catalog.notification.add.description': ' был добавлен в корзину',
+  'catalog.notification.remove.title': 'Убрано из корзины',
+  'catalog.notification.remove.description': ' был убран из корзины',
+  'catalog.notification.already.title': 'Товар уже есть в корзине',
+  'catalog.notification.already.description1': 'Количество ',
+  'catalog.notification.already.description2': ' увеличено на 1',
+
   // Delivery page
   'delivery.title': 'ДОСТАВКА',
   'delivery.pickup.title': 'Самовывоз',
@@ -60,7 +67,14 @@ export const ruTranslations: Record<string, string> = {
   'cart.goto.catalog': 'ПЕРЕЙТИ В КАТАЛОГ',
   'cart.total': 'Итого:',
   'cart.checkout': 'ОФОРМИТЬ ЗАКАЗ',
-  
+  'cart.notification.title': 'Заказ Подтвержден',
+  'cart.notification.description': 'Спасибо за покупку. Ваш заказ успешно оформлен.',
+  'cart.notification.confirmation': 'Подтверждение заказа отправлено на вашу электронную почту.',
+  'cart.notification.continueButton': 'Продолжить Покупки',
+  'cart.notification.process': 'Наша команда обработает ваш заказ в ближайшее время.',
+  'cart.items': 'Товаров в корзине:',
+  'cart.clear': 'Очистить корзину',
+
   // Footer
   'footer.copyright': '© 2025 БРЕНД LUXE$ УЛ. КРАСНАЯ, 69',
   
